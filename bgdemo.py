@@ -1,3 +1,8 @@
+"""
+Author: Ryan Baclit
+Email: gamehelphere@gmail.com
+License: GPL 2.0
+"""
 import pygame
 
 class BGDemo:
