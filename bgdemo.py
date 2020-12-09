@@ -7,8 +7,8 @@ import pygame
 
 class BGDemo:
 
-    screenWidth = 1024
-    screenHeight = 768
+    screenWidth = 640
+    screenHeight = 480
     screen = ""
     gameIsRunning = True
 
@@ -30,9 +30,17 @@ class BGDemo:
             for event in pygame.event.get():
                 if event.type == pygame.KEYUP:
                     pressedKeys = pygame.key.get_pressed()
-                    print(pressedKeys[pygame.K_q])
-                    if pressedKeys[pygame.K_q] == True:
-                        gameIsRunning = False
+                    print("event.key")
+                    print(event.key)
+                    print("pygame.K_q")
+                    print(pygame.K_q)
+
+                    # If the key that was pressed and released is the same as the 'q' key, exit game.
+
+                    if event.key == pygame.K_q:
+                        self.gameIsRunning = False
+                    else:
+                        print("wala.")
 
             self.draw()
 
