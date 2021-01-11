@@ -30,7 +30,7 @@ class Block(pygame.sprite.Sprite):
        # This will be useful for collision detection!
 
        self.rect = self.image.get_rect()
-       print(self.rect)
+       #print(self.rect)
 
     def update(self):
 
