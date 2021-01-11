@@ -9,23 +9,40 @@ from Block import Block
 
 class BGDemo:
 
-    screenWidth = 640
-    screenHeight = 480
-    screen = ""
-    gameIsRunning = True
+    _screenWidth = 640
+    _screenHeight = 480
+    _screen = ""
+    _gameIsRunning = True
     _block = ""
+    _background = ""
 
     def __init__(self):
 
         pygame.init()
         pygame.display.set_caption("BGDemo - Basic Game Demo")
-        self.screen = pygame.display.set_mode((self.screenWidth, self.screenHeight))
+        self._screen = pygame.display.set_mode((self._screenWidth, self._screenHeight))
         print(os.getcwd())
-        self.block = Block(os.getcwd() + "/images/player.png")
+        self._block = Block(os.getcwd() + "/images/player.png")
+
+        """
+        Make a basic background image using a Surface filled with the color black. This will
+        be changed later to some other game-related image.
+        """
+
+        self._background = pygame.Surface((self._screenWidth, self._screenHeight))
+        self._background.fill(pygame.Color(0, 0, 0, 1))
 
     def draw(self):
 
-        self.screen.blit(self.block.image, (0, 0))
+        # First draw the background.
+
+        self._screen.blit(self._background, (0, 0))
+
+        # Second draw the sprite.
+
+        self._screen.blit(self._block.image, (0, 0))
+
+        # Third do an update.
 
         pygame.display.flip()
 
@@ -33,7 +50,7 @@ class BGDemo:
         event = ""
         pressedKeys = []
 
-        while self.gameIsRunning:
+        while self._gameIsRunning:
             for event in pygame.event.get():
                 if event.type == pygame.KEYUP:
                     pressedKeys = pygame.key.get_pressed()
@@ -45,7 +62,7 @@ class BGDemo:
                     # If the key that was pressed and released is the same as the 'q' key, exit game.
 
                     if event.key == pygame.K_q:
-                        self.gameIsRunning = False
+                        self._gameIsRunning = False
                     else:
                         print("wala.")
 
