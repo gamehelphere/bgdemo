@@ -16,6 +16,7 @@ class BGDemo:
     _block = ""
     _background = ""
     _blockBaddie = ""
+    _spriteGroup = ""
 
     def __init__(self):
 
@@ -24,7 +25,9 @@ class BGDemo:
         self._screen = pygame.display.set_mode((self._screenWidth, self._screenHeight))
         print(os.getcwd())
         self._block = Block(os.getcwd() + "/images/player.png")
+        self._block.setName("Hero")
         self._blockBaddie = Block(os.getcwd() + "/images/baddie.png")
+        self._blockBaddie.setName("Villain")
 
         """
         Make a basic background image using a Surface filled with the color black. This will
@@ -34,18 +37,29 @@ class BGDemo:
         self._background = pygame.Surface((self._screenWidth, self._screenHeight))
         self._background.fill(pygame.Color(0, 0, 0, 1))
 
+        """
+        Add sprites into a pygame.sprite.Group.
+        """
+
+        self._spriteGroup = pygame.sprite.Group()
+        self._spriteGroup.add(self._block, self._blockBaddie)
+
     def draw(self):
 
-        # First draw the background.
+        # First call the update() of the pygame.sprite.Group instance.
+
+        self._spriteGroup.update()
+
+        # Second draw the background.
 
         self._screen.blit(self._background, (0, 0))
 
-        # Second draw the sprite.
+        # Third draw the sprite.
 
         self._screen.blit(self._block.image, (0, 0))
         self._screen.blit(self._blockBaddie.image, (150, 20))
 
-        # Third do an update.
+        # Fourth do a display update.
 
         pygame.display.flip()
 

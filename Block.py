@@ -14,6 +14,8 @@ import pygame
 
 class Block(pygame.sprite.Sprite):
 
+    _spriteName = "wala pa."
+
     # Constructor.
 
     def __init__(self, filename):
@@ -32,6 +34,11 @@ class Block(pygame.sprite.Sprite):
        self.rect = self.image.get_rect()
        #print(self.rect)
 
+    def setName(self, newName):
+
+        self._spriteName = newName
+
     def update(self):
 
-         pass
+        message = self._spriteName + " called update."
+        print(message)
