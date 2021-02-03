@@ -15,6 +15,7 @@ class BGDemo:
     _gameIsRunning = True
     _block = ""
     _background = ""
+    _blockBaddie = ""
 
     def __init__(self):
 
@@ -23,6 +24,7 @@ class BGDemo:
         self._screen = pygame.display.set_mode((self._screenWidth, self._screenHeight))
         print(os.getcwd())
         self._block = Block(os.getcwd() + "/images/player.png")
+        self._blockBaddie = Block(os.getcwd() + "/images/baddie.png")
 
         """
         Make a basic background image using a Surface filled with the color black. This will
@@ -41,6 +43,7 @@ class BGDemo:
         # Second draw the sprite.
 
         self._screen.blit(self._block.image, (0, 0))
+        self._screen.blit(self._blockBaddie.image, (150, 20))
 
         # Third do an update.
 
