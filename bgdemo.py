@@ -44,6 +44,12 @@ class BGDemo:
         self._spriteGroup = pygame.sprite.Group()
         self._spriteGroup.add(self._block, self._blockBaddie)
 
+        """
+        Set initial coordinates of sprites.
+        """
+
+        self._blockBaddie.setBoth(150, 20)
+
     def draw(self):
 
         # First call the update() of the pygame.sprite.Group instance.
@@ -56,8 +62,8 @@ class BGDemo:
 
         # Third draw the sprite.
 
-        self._screen.blit(self._block.image, (0, 0))
-        self._screen.blit(self._blockBaddie.image, (150, 20))
+        self._screen.blit(self._block.image, self._block.getBoth())
+        self._screen.blit(self._blockBaddie.image, self._blockBaddie.getBoth())
 
         # Fourth do a display update.
 
@@ -77,9 +83,19 @@ class BGDemo:
                     print(pygame.K_q)
 
                     # If the key that was pressed and released is the same as the 'q' key, exit game.
-
+                    """
+                    The rest of the keys will follow the a, s, d, and w keys used for most games.
+                    """
                     if event.key == pygame.K_q:
                         self._gameIsRunning = False
+                    elif event.key == pygame.K_a:
+                        self._block.setX(-10.5)
+                    elif event.key == pygame.K_s:
+                        self._block.setY(10.5)
+                    elif event.key == pygame.K_d:
+                        self._block.setX(10.5)
+                    elif event.key == pygame.K_w:
+                        self._block.setY(-10.5)
                     else:
                         print("wala.")
 

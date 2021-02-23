@@ -15,6 +15,8 @@ import pygame
 class Block(pygame.sprite.Sprite):
 
     _spriteName = "wala pa."
+    _x = 0.0
+    _y = 0.0
 
     # Constructor.
 
@@ -42,3 +44,26 @@ class Block(pygame.sprite.Sprite):
 
         message = self._spriteName + " called update."
         print(message)
+
+    """
+    New methods to change the private variables for the sprite position.
+    I think the game sprite will officially be called 'Block' if this goes on!
+    (^_^)
+    """
+
+    def setX(self, given):
+
+        self._x = self._x + given
+
+    def setY(self, given):
+
+        self._y = self._y + given
+
+    def setBoth(self, givenX, givenY):
+
+        self._x = self._x + givenX
+        self._y = self._y + givenY
+
+    def getBoth(self):
+
+        return (self._x, self._y)
