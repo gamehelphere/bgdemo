@@ -74,32 +74,48 @@ class BGDemo:
         pressedKeys = []
 
         while self._gameIsRunning:
+
+            """
+            Grab an event from the queue. The following code will control the game loop's termination.
+            This code is the first part solely for game loop control.
+            """
+
             for event in pygame.event.get():
-                if event.type == pygame.KEYUP:
-                    pressedKeys = pygame.key.get_pressed()
-                    print("event.key")
-                    print(event.key)
-                    print("pygame.K_q")
-                    print(pygame.K_q)
+                if event.type == pygame.KEYDOWN:
 
                     # If the key that was pressed and released is the same as the 'q' key, exit game.
-                    """
-                    The rest of the keys will follow the a, s, d, and w keys used for most games.
-                    """
+
                     if event.key == pygame.K_q:
                         self._gameIsRunning = False
-                    elif event.key == pygame.K_a:
-                        self._block.setX(-10.5)
-                    elif event.key == pygame.K_s:
-                        self._block.setY(10.5)
-                    elif event.key == pygame.K_d:
-                        self._block.setX(10.5)
-                    elif event.key == pygame.K_w:
-                        self._block.setY(-10.5)
-                    else:
-                        print("wala.")
+
+            """
+            Handle game input by accessing queue continuously. This is needed to allow the
+            full immersion and control for the player.
+            
+            This is the second part of event handling solely for player controls.
+            """
+
+            pressedKeys = pygame.key.get_pressed()
+
+            """
+            The rest of the keys will follow the a, s, d, and w keys used for most games.
+            """
+
+            if pressedKeys[pygame.K_a]:
+                self._block.setX(-10.5)
+            elif pressedKeys[pygame.K_s]:
+                    self._block.setY(10.5)
+            elif pressedKeys[pygame.K_d]:
+                    self._block.setX(10.5)
+            elif pressedKeys[pygame.K_w]:
+                    self._block.setY(-10.5)
 
             self.draw()
+
+            # Let pygame handle the internal event queue manipulation.
+
+            pygame.event.pump()
+
 
 if __name__=="__main__":
 

@@ -43,7 +43,7 @@ class Block(pygame.sprite.Sprite):
     def update(self):
 
         message = self._spriteName + " called update."
-        print(message)
+        #print(message)
 
     """
     New methods to change the private variables for the sprite position.
